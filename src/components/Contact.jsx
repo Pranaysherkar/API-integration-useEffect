@@ -1,9 +1,20 @@
 import React, { useEffect, useState } from 'react'
+import axios from "../utils/axios";
 //15.30
 function Contact() {
   const[val,setVal]=useState("first data");
   const[data,setData]=useState("second data");
+  const getUsers = () => {
+    axios
+      .get("/users")
+      .then((res) => {
+        console.log(res);
+        setdata(res.data);
+      })
+      .catch((err) => console.log(err));
+  };
   useEffect(() =>{
+    getUsers();
     console.log("Contact page loaded");
 
     return ()=>{
